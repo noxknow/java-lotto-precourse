@@ -1,11 +1,13 @@
 package lotto.view;
 
 import lotto.handler.InputHandler;
+import org.xml.sax.ErrorHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.handler.ErrorHandler.INVALID_FORMAT;
 
 public class ConsoleInput implements InputHandler {
 
@@ -35,13 +37,21 @@ public class ConsoleInput implements InputHandler {
         String[] inputNumbers = inputs.split(",");
 
         for (String number : inputNumbers) {
-            winningNumbers.add(Integer.valueOf(number));
+            try {
+                winningNumbers.add(Integer.valueOf(number));
+            } catch (IllegalArgumentException e) {
+                throw INVALID_FORMAT.getException();
+            }
         }
 
         return winningNumbers;
     }
 
     private int stringToInt(String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            throw INVALID_FORMAT.getException();
+        }
     }
 }
