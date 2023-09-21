@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.LottoController;
 import lotto.handler.InputHandler;
 import lotto.view.ConsoleInput;
 
@@ -8,5 +9,6 @@ public class Application {
 
         final InputHandler inputHandler = new ConsoleInput();
 
+        new LottoController(inputHandler).run();
     }
 }

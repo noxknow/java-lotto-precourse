@@ -5,6 +5,6 @@ import java.util.List;
 public interface InputHandler {
 
     public int getPurchaseAmount();
-    public String getWinningLotto();
+    public List<Integer> getWinningLotto();
     public int getBonusNumber();
 }
