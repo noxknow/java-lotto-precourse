@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.handler.ErrorHandler.INVALID_COUNT;
@@ -16,5 +18,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw INVALID_COUNT.getException();
         }
+    }
+
+    private List<Integer> sortLottoNumbers(Lotto buyLottoNumbers) {
+        List<Integer> sortNumbers = new ArrayList<>();
+        sortNumbers.addAll(numbers);
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 }
