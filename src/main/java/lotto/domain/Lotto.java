@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.handler.ErrorHandler.INVALID_COUNT;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -12,9 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw INVALID_COUNT.getException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }
