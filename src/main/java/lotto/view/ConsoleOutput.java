@@ -9,11 +9,12 @@ public class ConsoleOutput implements OutputHandler {
 
     @Override
     public void printBuyLottoList(List<Lotto> buyLottoLists) {
+        System.out.println();
         System.out.println(buyLottoLists.size() + "개를 구매했습니다.");
 
-        for (Lotto buyLottoNumbers : buyLottoLists) {
-            System.out.println(buyLottoNumbers.sortLottoNumbers());
-        }
+        buyLottoLists.stream()
+                .map(Lotto::sortLottoNumbers)
+                .forEach(System.out::println);
     }
 
     @Override

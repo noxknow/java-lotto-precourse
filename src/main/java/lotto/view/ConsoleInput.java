@@ -3,11 +3,12 @@ package lotto.view;
 import lotto.handler.InputHandler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.handler.ErrorHandler.INCONVERTIBLE_TYPE;
-import static lotto.handler.ErrorHandler.INVALID_PARSING_INPUT;
 
 public class ConsoleInput implements InputHandler {
 
@@ -34,23 +35,13 @@ public class ConsoleInput implements InputHandler {
     }
 
     private List<Integer> stringToList(String inputs) {
-
-        List<Integer> winningNumbers = new ArrayList<>();
-
         try {
-            String[] inputNumbers = inputs.split(",");
-            for (String number : inputNumbers) {
-                try {
-                    winningNumbers.add(Integer.valueOf(number));
-                } catch (IllegalArgumentException e) {
-                    throw INCONVERTIBLE_TYPE.getException();
-                }
-            }
-        } catch (Exception e) {
-            throw INVALID_PARSING_INPUT.getException();
+            return Arrays.stream(inputs.split(","))
+                    .map(Integer::valueOf)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            throw INCONVERTIBLE_TYPE.getException();
         }
-
-        return winningNumbers;
     }
 
     private int stringToInt(String input) {

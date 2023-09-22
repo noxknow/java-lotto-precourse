@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static lotto.handler.ErrorHandler.DUPLICATE_NUMBER;
 import static lotto.handler.ErrorHandler.INVALID_COUNT;
@@ -29,11 +30,8 @@ public class Lotto {
     }
 
     public List<Integer> sortLottoNumbers() {
-
-        List<Integer> sortNumbers = new ArrayList<>();
-        sortNumbers.addAll(numbers);
-        Collections.sort(sortNumbers);
-
-        return sortNumbers;
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
