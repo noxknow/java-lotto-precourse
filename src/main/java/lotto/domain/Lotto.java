@@ -20,10 +20,12 @@ public class Lotto {
         }
     }
 
-    private List<Integer> sortLottoNumbers(Lotto buyLottoNumbers) {
+    public List<Integer> sortLottoNumbers() {
+
         List<Integer> sortNumbers = new ArrayList<>();
         sortNumbers.addAll(numbers);
         Collections.sort(sortNumbers);
+
         return sortNumbers;
     }
 }

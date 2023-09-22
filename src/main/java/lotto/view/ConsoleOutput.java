@@ -12,7 +12,7 @@ public class ConsoleOutput implements OutputHandler {
         System.out.println(buyLottoLists.size() + "개를 구매했습니다.");
 
         for (Lotto buyLottoNumbers : buyLottoLists) {
-
+            System.out.println(buyLottoNumbers.sortLottoNumbers());
         }
     }
 
