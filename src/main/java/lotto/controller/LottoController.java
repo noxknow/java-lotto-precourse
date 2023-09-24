@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoService;
 import lotto.domain.MoneyService;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -22,10 +25,8 @@ public class LottoController {
     public void run() {
 
         int count = getCount();
-        getBuyLottoList(count);
-
-        inputHandler.getWinningLotto();
-        inputHandler.getBonusNumber();
+        List<Lotto> buyLottoLists = getBuyLottoList(count);
+        getStatistics(buyLottoLists);
     }
 
     private int getCount() {
@@ -35,7 +36,19 @@ public class LottoController {
         return moneyService.getCount(purchaseAmount);
     }
 
-    private void getBuyLottoList(int count) {
-        outputHandler.printBuyLottoList(lottoService.getLottoNumbers(count));
+    private List<Lotto> getBuyLottoList(int count) {
+        List<Lotto> buyLottoLists = lottoService.getLottoNumbers(count);
+        outputHandler.printBuyLottoList(buyLottoLists);
+
+        return buyLottoLists;
+    }
+
+    private void getStatistics(List<Lotto> buyLottoLists) {
+
+        List<Integer> winningLotto = inputHandler.getWinningLotto();
+        List<Integer> countList = lottoService.compareLotto(buyLottoLists, winningLotto);
+        int bonusNumber = inputHandler.getBonusNumber();
+
+        outputHandler.printWinningLottoList(countList, bonusNumber);
     }
 }

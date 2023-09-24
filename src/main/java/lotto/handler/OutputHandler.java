@@ -7,6 +7,6 @@ import java.util.List;
 public interface OutputHandler {
 
     public void printBuyLottoList(List<Lotto> buyLottoLists);
-    public void printWinningLottoList();
+    public void printWinningLottoList(List<Integer> countList, int bonusNumber);
     public void printYield();
 }
