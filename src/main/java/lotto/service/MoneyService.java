@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 import static lotto.handler.ErrorHandler.INVALID_AMOUNT;
 import static lotto.handler.ErrorHandler.INVALID_NEGATIVE_INPUT;
@@ -6,7 +6,6 @@ import static lotto.handler.ErrorHandler.INVALID_NEGATIVE_INPUT;
 public class MoneyService {
 
     public void validate(int purchaseAmount) {
-
         if (purchaseAmount <= 0) {
             throw INVALID_NEGATIVE_INPUT.getException();
         } else if (purchaseAmount % 1000 != 0) {

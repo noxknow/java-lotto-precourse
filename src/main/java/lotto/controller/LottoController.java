@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoService;
-import lotto.domain.MoneyService;
+import lotto.service.LottoService;
+import lotto.service.MoneyService;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 
@@ -23,7 +23,6 @@ public class LottoController {
     }
 
     public void run() {
-
         int count = getCount();
         List<Lotto> buyLottoLists = getBuyLottoList(count);
         getStatistics(buyLottoLists);
@@ -44,10 +43,9 @@ public class LottoController {
     }
 
     private void getStatistics(List<Lotto> buyLottoLists) {
-
         List<Integer> winningLotto = inputHandler.getWinningLotto();
-        List<Integer> countList = lottoService.compareLotto(buyLottoLists, winningLotto);
         int bonusNumber = inputHandler.getBonusNumber();
+        List<Integer> countList = lottoService.compareLotto(buyLottoLists, winningLotto, bonusNumber);
 
         outputHandler.printWinningLottoList(countList, bonusNumber);
     }

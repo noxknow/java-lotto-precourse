@@ -11,10 +11,6 @@ public class ConsoleOutput implements OutputHandler {
     public void printBuyLottoList(List<Lotto> buyLottoLists) {
         System.out.println();
         System.out.println(buyLottoLists.size() + "개를 구매했습니다.");
-
-        buyLottoLists.stream()
-                .map(Lotto::sortLottoNumbers)
-                .forEach(System.out::println);
     }
 
     @Override

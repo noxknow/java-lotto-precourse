@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
+import lotto.repository.ListRepository;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,12 +12,17 @@ import java.util.stream.IntStream;
 public class LottoService {
 
     public List<Lotto> getLottoNumbers(int count) {
-        return IntStream.range(0, count)
+        List<Lotto> buyLottoLists = IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .collect(Collectors.toList());
+
+        ListRepository listRepository = new ListRepository();
+        listRepository.saveBuyLottoLists(buyLottoLists);
+
+        return buyLottoLists;
     }
 
-    public List<Integer> compareLotto(List<Lotto> buyLottoLists, List<Integer> winningLotto) {
+    public List<Integer> compareLotto(List<Lotto> buyLottoLists, List<Integer> winningLotto, int bonusNumber) {
         List<Integer> countList = buyLottoLists.stream()
                 .map(Lotto::sortLottoNumbers)
                 .map(lottoNumbers -> (int) lottoNumbers.stream()
