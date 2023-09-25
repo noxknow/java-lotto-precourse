@@ -50,6 +50,6 @@ public class LottoController {
         int bonusNumber = inputHandler.getBonusNumber();
         List<Integer> countList = lottoService.compareLotto(buyLottoLists, winningLotto, bonusNumber);
 
-        outputHandler.printWinningLottoList(countList, bonusNumber);
+        outputHandler.printWinningLottoList();
     }
 }

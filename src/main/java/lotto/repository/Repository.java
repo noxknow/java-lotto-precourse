@@ -8,4 +8,6 @@ public interface Repository {
 
     void saveBuyLottoLists(List<Lotto> buyLottoLists);
     void showBuyLottoLists();
+
+    void showWinningLottoList(List<Integer> countList, int bonusNumber);
 }

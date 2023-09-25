@@ -17,19 +17,12 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printWinningLottoList(List<Integer> countList, int bonusNumber) {
+    public void printWinningLottoList() {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for (int i = 3; i < 7; i++) {
-            int lottoCount = i;
-            long matchingCount = countList.stream()
-                    .filter(c -> c == lottoCount)
-                    .count();
 
-            System.out.println();
-        }
     }
 
     @Override

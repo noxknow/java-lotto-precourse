@@ -20,4 +20,16 @@ public class ListRepository implements Repository {
                 .map(Lotto::sortLottoNumbers)
                 .forEach(System.out::println);
     }
+
+    @Override
+    public void showWinningLottoList(List<Integer> countList, int bonusNumber) {
+        for (int i = 3; i < 7; i++) {
+            int lottoCount = i;
+            long matchingCount = countList.stream()
+                    .filter(c -> c == lottoCount)
+                    .count();
+
+            System.out.println();
+        }
+    }
 }
