@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.repository.Repository;
 import lotto.service.LottoService;
 import lotto.service.MoneyService;
 import lotto.handler.InputHandler;
@@ -12,12 +13,14 @@ public class LottoController {
 
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
+    private final Repository repository;
     private final MoneyService moneyService;
     private final LottoService lottoService;
 
-    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, MoneyService moneyService, LottoService lottoService) {
+    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, Repository repository, MoneyService moneyService, LottoService lottoService) {
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;
+        this.repository = repository;
         this.moneyService = moneyService;
         this.lottoService = lottoService;
     }
@@ -36,8 +39,8 @@ public class LottoController {
     }
 
     private List<Lotto> getBuyLottoList(int count) {
-        List<Lotto> buyLottoLists = lottoService.getLottoNumbers(count);
-        outputHandler.printBuyLottoList(buyLottoLists);
+        List<Lotto> buyLottoLists = lottoService.getLottoNumbers(count, repository);
+        outputHandler.printBuyLottoList(count, repository);
 
         return buyLottoLists;
     }
