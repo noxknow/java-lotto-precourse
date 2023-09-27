@@ -28,7 +28,10 @@ public class LottoController {
     public void run() {
         int count = getCount();
         List<Lotto> buyLottoLists = getBuyLottoList(count);
+
         getStatistics(buyLottoLists);
+
+        outputHandler.printYield(count, repository);
     }
 
     private int getCount() {

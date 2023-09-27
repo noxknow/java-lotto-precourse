@@ -12,4 +12,5 @@ public interface Repository {
 
     void saveWinningLottoList(LottoHandler lottoHandler);
     void showWinningLottoList();
+    void showProfit(int count);
 }

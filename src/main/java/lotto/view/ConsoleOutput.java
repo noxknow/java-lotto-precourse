@@ -22,7 +22,7 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printYield() {
-
+    public void printYield(int count, Repository repository) {
+        repository.showProfit(count);
     }
 }

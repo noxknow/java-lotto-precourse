@@ -24,7 +24,7 @@ public class LottoService {
         return buyLottoLists;
     }
 
-    public List<Integer> compareLotto(List<Lotto> buyLottoLists, List<Integer> winningLotto) {
+    private List<Integer> compareLotto(List<Lotto> buyLottoLists, List<Integer> winningLotto) {
         List<Integer> countList = buyLottoLists.stream()
                 .map(Lotto::sortLottoNumbers)
                 .map(lottoNumbers -> (int) lottoNumbers.stream()

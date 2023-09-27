@@ -9,5 +9,5 @@ public interface OutputHandler {
 
     public void printBuyLottoList(int count, Repository repository);
     public void printWinningLottoList(Repository repository);
-    public void printYield();
+    public void printYield(int count, Repository repository);
 }

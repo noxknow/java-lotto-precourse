@@ -5,18 +5,18 @@ import java.util.Optional;
 
 public enum LottoHandler {
 
-    THREE(3, "5,000원", ""),
-    FOUR(4, "50,000원", ""),
-    FIVE(5, "1,500,000원", ""),
-    BONUS(5, "30,000,000원", ", 보너스 볼 일치"),
-    SIX(6, "2,000,000,000원", ""),
-    NOPE(0, "0", "");
+    THREE(3, 5000, ""),
+    FOUR(4, 50000, ""),
+    FIVE(5, 1500000, ""),
+    BONUS(5, 30000000, ", 보너스 볼 일치"),
+    SIX(6, 2000000000, ""),
+    NOPE(0, 0, "");
 
     private final int count;
-    private final String prize;
+    private final int prize;
     private final String message;
 
-    LottoHandler(int count, String prize, String message) {
+    LottoHandler(int count, int prize, String message) {
         this.count = count;
         this.prize = prize;
         this.message = message;
@@ -36,7 +36,7 @@ public enum LottoHandler {
         return count;
     }
 
-    public String getPrize() {
+    public int getPrize() {
         return prize;
     }
 
