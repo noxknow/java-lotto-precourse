@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.handler.LottoHandler;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,18 +11,17 @@ import static lotto.handler.ErrorHandler.INVALID_RANGE;
 
 public class LottoJudge {
 
-    private final List<Lotto> buyLottoLists;
+    private final List<Integer> sortedNumbers;
     private final List<Integer> winningLotto;
     private final int bonusNumber;
 
-    public LottoJudge(List<Lotto> buyLottoLists, List<Integer> winningLotto, int bonusNumber) {
-        Lotto lotto = new Lotto(winningLotto);
-        validateDuplicate(bonusNumber);
-        validateRange(bonusNumber);
-
-        this.buyLottoLists = buyLottoLists;
+    public LottoJudge(List<Integer> sortedNumbers, List<Integer> winningLotto, int bonusNumber) {
+        this.sortedNumbers = sortedNumbers;
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+
+        validateDuplicate(bonusNumber);
+        validateRange(bonusNumber);
     }
 
     private void validateDuplicate(int bonusNumber) {
@@ -33,5 +34,17 @@ public class LottoJudge {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw INVALID_RANGE.getException();
         }
+    }
+
+    public LottoHandler matchLottoHandler(int count) {
+        if (count == 5 && sortedNumbers.contains(bonusNumber)) {
+            return LottoHandler.BONUS;
+        } else if (count == 5 && !sortedNumbers.contains(bonusNumber)) {
+            return LottoHandler.FIVE;
+        }
+
+        LottoHandler lottoHandler = LottoHandler.getLottoHandler(count);
+
+        return lottoHandler;
     }
 }

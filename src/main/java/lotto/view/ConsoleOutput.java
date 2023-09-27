@@ -17,12 +17,8 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printWinningLottoList() {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-
+    public void printWinningLottoList(Repository repository) {
+        repository.showWinningLottoList();
     }
 
     @Override

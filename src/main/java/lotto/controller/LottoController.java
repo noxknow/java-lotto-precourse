@@ -48,8 +48,8 @@ public class LottoController {
     private void getStatistics(List<Lotto> buyLottoLists) {
         List<Integer> winningLotto = inputHandler.getWinningLotto();
         int bonusNumber = inputHandler.getBonusNumber();
-        List<Integer> countList = lottoService.compareLotto(buyLottoLists, winningLotto, bonusNumber);
+        lottoService.calculateMatchingCount(repository, buyLottoLists, winningLotto, bonusNumber);
 
-        outputHandler.printWinningLottoList();
+        outputHandler.printWinningLottoList(repository);
     }
 }

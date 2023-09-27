@@ -8,6 +8,6 @@ import java.util.List;
 public interface OutputHandler {
 
     public void printBuyLottoList(int count, Repository repository);
-    public void printWinningLottoList();
+    public void printWinningLottoList(Repository repository);
     public void printYield();
 }
