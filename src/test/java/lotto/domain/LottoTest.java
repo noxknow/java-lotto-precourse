@@ -46,7 +46,7 @@ class LottoTest {
     @DisplayName("로또 번호가 1~45 이내의 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(strings = {"0,2,3,4,5,6", "-1,10,20,30,40,45", "40,41,42,43,44,46"})
-    public void createLottoByOverNumber(String inputString) {
+    void createLottoByOverNumber(String inputString) {
         List<Integer> inputList = Arrays.stream(inputString.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
