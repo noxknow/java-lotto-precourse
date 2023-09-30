@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.repository.Repository;
 import lotto.service.LottoService;
-import lotto.service.MoneyService;
+import lotto.domain.Money;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 
@@ -14,36 +14,34 @@ public class LottoController {
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
     private final Repository repository;
-    private final MoneyService moneyService;
     private final LottoService lottoService;
 
-    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, Repository repository, MoneyService moneyService, LottoService lottoService) {
+    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, Repository repository,LottoService lottoService) {
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;
         this.repository = repository;
-        this.moneyService = moneyService;
         this.lottoService = lottoService;
     }
 
     public void run() {
-        int count = getCount();
-        List<Lotto> buyLottoLists = getBuyLottoList(count);
+        Money money = inputMoney();
+
+        List<Lotto> buyLottoLists = getBuyLottoList(money);
 
         getStatistics(buyLottoLists);
 
         outputHandler.printYield(count, repository);
     }
 
-    private int getCount() {
+    private Money inputMoney() {
         int purchaseAmount = inputHandler.getPurchaseAmount();
-        moneyService.validate(purchaseAmount);
 
-        return moneyService.getCount(purchaseAmount);
+        return new Money(purchaseAmount);
     }
 
-    private List<Lotto> getBuyLottoList(int count) {
-        List<Lotto> buyLottoLists = lottoService.getLottoNumbers(count, repository);
-        outputHandler.printBuyLottoList(count, repository);
+    private List<Lotto> getBuyLottoList(Money money) {
+        List<Lotto> buyLottoLists = lottoService.getLottoNumbers(money, repository);
+        outputHandler.printBuyLottoList(money, repository);
 
         return buyLottoLists;
     }

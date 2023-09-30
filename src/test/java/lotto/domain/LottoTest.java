@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.Lotto;
+import lotto.handler.ErrorHandler;
 import lotto.handler.InputHandler;
 import lotto.view.ConsoleInput;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +23,8 @@ class LottoTest {
 
     private static Stream<Arguments> generateBasicLotto() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 20, 10, 45, 40, 30)), List.of(1, 10, 20, 30, 40, 45))
+                Arguments.of(new Lotto(List.of(1, 20, 10, 45, 40, 30)), List.of(1, 10, 20, 30, 40, 45)),
+                Arguments.of(new Lotto(List.of(1, 3, 6, 5, 11, 10)), List.of(1, 3, 5, 6, 10, 11))
         );
     }
 
@@ -50,11 +52,12 @@ class LottoTest {
                 .collect(Collectors.toList());
 
         assertThatThrownBy(() -> new Lotto(inputList))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorHandler.INVALID_RANGE.getException().getMessage());
     }
 
     @DisplayName("로또 번호가 오름차순으로 정상적으로 반환된다.")
-    @ParameterizedTest(name = "[{index}] input {0} ")
+    @ParameterizedTest(name = "[{index}] Input: {0} ")
     @MethodSource("generateBasicLotto")
     void createLotto(Lotto lotto, List<Integer> expected) {
         assertThat(lotto.sortLottoNumbers()).isEqualTo(expected);
