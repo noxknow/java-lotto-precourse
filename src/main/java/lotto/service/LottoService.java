@@ -5,10 +5,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoJudge;
 import lotto.domain.Money;
 import lotto.handler.LottoHandler;
-import lotto.repository.ListRepository;
 import lotto.repository.Repository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -16,7 +14,7 @@ import java.util.stream.IntStream;
 public class LottoService {
 
     public List<Lotto> getLottoNumbers(Money money, Repository repository) {
-        int count = money.getCount();
+        int count = money.getPurchaseAmount() / 1000;
 
         List<Lotto> buyLottoLists = IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))

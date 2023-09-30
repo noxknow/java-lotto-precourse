@@ -1,13 +1,11 @@
 package lotto.handler;
 
-import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.repository.Repository;
-
-import java.util.List;
 
 public interface OutputHandler {
 
-    public void printBuyLottoList(int count, Repository repository);
+    public void printBuyLottoList(Money money, Repository repository);
     public void printWinningLottoList(Repository repository);
     public void printYield(int count, Repository repository);
 }

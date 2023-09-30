@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.repository.Repository;
 import lotto.service.LottoService;
@@ -46,10 +47,17 @@ public class LottoController {
         return buyLottoLists;
     }
 
-    private void getStatistics(List<Lotto> buyLottoLists) {
-        List<Integer> winningLotto = inputHandler.getWinningLotto();
+    private BonusNumber getBonusNumber() {
+        Lotto winningLotto = new Lotto(inputHandler.getWinningLotto());
         int bonusNumber = inputHandler.getBonusNumber();
-        lottoService.calculateMatchingCount(repository, buyLottoLists, winningLotto, bonusNumber);
+
+        return new BonusNumber(winningLotto.sortLottoNumbers(), bonusNumber);
+    }
+
+    private void getStatistics(List<Lotto> buyLottoLists) {
+        Lotto winningLotto = new Lotto(inputHandler.getWinningLotto());
+        int bonusNumber = inputHandler.getBonusNumber();
+        lottoService.calculateMatchingCount(repository, buyLottoLists, winningLotto.sortLottoNumbers(), bonusNumber);
 
         outputHandler.printWinningLottoList(repository);
     }

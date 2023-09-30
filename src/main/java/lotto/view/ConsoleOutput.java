@@ -1,17 +1,15 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.handler.OutputHandler;
 import lotto.repository.Repository;
-
-import java.util.List;
 
 public class ConsoleOutput implements OutputHandler {
 
     @Override
-    public void printBuyLottoList(int count, Repository repository) {
+    public void printBuyLottoList(Money money, Repository repository) {
         System.out.println();
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println(money.getCount() + "개를 구매했습니다.");
 
         repository.showBuyLottoLists();
     }

@@ -21,7 +21,7 @@ public class Money {
         }
     }
 
-    public int getCount() {
-        return purchaseAmount / 1000;
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }
