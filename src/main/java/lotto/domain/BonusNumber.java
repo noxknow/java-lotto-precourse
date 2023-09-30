@@ -29,4 +29,12 @@ public class BonusNumber {
             throw INVALID_RANGE.getException();
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getWinningLotto() {
+        return winningLotto;
+    }
 }

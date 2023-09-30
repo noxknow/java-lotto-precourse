@@ -29,6 +29,8 @@ public class LottoController {
 
         List<Lotto> buyLottoLists = getBuyLottoList(money);
 
+        BonusNumber bonusNumber = getBonusNumber();
+
         getStatistics(buyLottoLists);
 
         outputHandler.printYield(count, repository);
