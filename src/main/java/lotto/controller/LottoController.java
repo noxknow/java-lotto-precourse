@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
+import lotto.domain.WinLottoWithBonusNumber;
 import lotto.domain.Lotto;
 import lotto.repository.Repository;
 import lotto.service.LottoService;
@@ -29,11 +29,11 @@ public class LottoController {
 
         List<Lotto> buyLottoLists = getBuyLottoList(money);
 
-        BonusNumber bonusNumber = getBonusNumber();
+        WinLottoWithBonusNumber winLottoWithBonusNumber = getWinLottoWithBonusNumber();
 
-        getStatistics(buyLottoLists);
+        getStatistics(buyLottoLists, winLottoWithBonusNumber);
 
-        outputHandler.printYield(count, repository);
+        outputHandler.printYield(money, repository);
     }
 
     private Money inputMoney() {
@@ -49,17 +49,15 @@ public class LottoController {
         return buyLottoLists;
     }
 
-    private BonusNumber getBonusNumber() {
+    private WinLottoWithBonusNumber getWinLottoWithBonusNumber() {
         Lotto winningLotto = new Lotto(inputHandler.getWinningLotto());
         int bonusNumber = inputHandler.getBonusNumber();
 
-        return new BonusNumber(winningLotto.sortLottoNumbers(), bonusNumber);
+        return new WinLottoWithBonusNumber(winningLotto.sortLottoNumbers(), bonusNumber);
     }
 
-    private void getStatistics(List<Lotto> buyLottoLists) {
-        Lotto winningLotto = new Lotto(inputHandler.getWinningLotto());
-        int bonusNumber = inputHandler.getBonusNumber();
-        lottoService.calculateMatchingCount(repository, buyLottoLists, winningLotto.sortLottoNumbers(), bonusNumber);
+    private void getStatistics(List<Lotto> buyLottoLists, WinLottoWithBonusNumber winLottoWithBonusNumber) {
+        lottoService.calculateMatchingCount(repository, buyLottoLists, winLottoWithBonusNumber);
 
         outputHandler.printWinningLottoList(repository);
     }

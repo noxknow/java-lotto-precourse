@@ -9,7 +9,7 @@ public class ConsoleOutput implements OutputHandler {
     @Override
     public void printBuyLottoList(Money money, Repository repository) {
         System.out.println();
-        System.out.println(money.getCount() + "개를 구매했습니다.");
+        System.out.println(money.getCount() / 1000 + "개를 구매했습니다.");
 
         repository.showBuyLottoLists();
     }
@@ -20,7 +20,7 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     @Override
-    public void printYield(int count, Repository repository) {
-        repository.showProfit(count);
+    public void printYield(Money money, Repository repository) {
+        repository.showProfit(money.getCount());
     }
 }

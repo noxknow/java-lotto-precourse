@@ -5,12 +5,12 @@ import java.util.List;
 import static lotto.handler.ErrorHandler.DUPLICATE_NUMBER;
 import static lotto.handler.ErrorHandler.INVALID_RANGE;
 
-public class BonusNumber {
+public class WinLottoWithBonusNumber {
 
     private final List<Integer> winningLotto;
     private final int bonusNumber;
 
-    public BonusNumber(List<Integer> winningLotto, int bonusNumber) {
+    public WinLottoWithBonusNumber(List<Integer> winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
 
